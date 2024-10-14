@@ -2,11 +2,18 @@ import javax.swing.*;
 import javax.swing.event.UndoableEditEvent;
 import javax.swing.event.UndoableEditListener;
 import javax.swing.filechooser.FileNameExtensionFilter;
+import javax.swing.text.BadLocationException;
+import javax.swing.text.DefaultHighlighter;
+import javax.swing.text.Highlighter;
+import javax.swing.text.JTextComponent;
 import javax.swing.undo.UndoManager;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.*;
+import java.awt.print.*;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
 
 public class NotepadGUI extends JFrame {
     // file explorer
@@ -68,6 +75,20 @@ public class NotepadGUI extends JFrame {
         menuBar.add(addViewMenu());
 
         add(toolBar, BorderLayout.NORTH);
+    }
+    
+    private void printDocument() {
+        try {
+            boolean complete = textArea.print();
+            if (complete) {
+                JOptionPane.showMessageDialog(this, "Printing Complete", "Print", JOptionPane.INFORMATION_MESSAGE);
+            } else {
+                JOptionPane.showMessageDialog(this, "Printing Canceled", "Print", JOptionPane.WARNING_MESSAGE);
+            }
+        } catch (PrinterException ex) {
+            JOptionPane.showMessageDialog(this, ex.getMessage(), "Print Error", JOptionPane.ERROR_MESSAGE);
+            ex.printStackTrace();
+        }
     }
 
     private JMenu addFileMenu(){
@@ -202,7 +223,16 @@ public class NotepadGUI extends JFrame {
                 }
             }
         });
-        fileMenu.add(saveMenuItem);
+        fileMenu.add(saveMenuItem); 
+        
+        JMenuItem printMenuItem = new JMenuItem("Print");
+        printMenuItem.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                printDocument();
+            }
+        });
+        fileMenu.add(printMenuItem);
 
         // "exit" functionality - ends program process
         JMenuItem exitMenuItem = new JMenuItem("Exit");
@@ -244,6 +274,52 @@ public class NotepadGUI extends JFrame {
             }
         });
         editMenu.add(redoMenuItem);
+        
+        JMenuItem findMenuItem = new JMenuItem("Find All");
+        findMenuItem.addActionListener(new ActionListener() {
+            private Highlighter.HighlightPainter highlightPainter =
+                new DefaultHighlighter.DefaultHighlightPainter(Color.YELLOW);
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // Remove any existing highlights
+                removeHighlights(textArea);
+
+                // Show input dialog to get the search term
+                String searchTerm = JOptionPane.showInputDialog(
+                    NotepadGUI.this, "Find:", "Find All", JOptionPane.PLAIN_MESSAGE);
+
+                if (searchTerm != null && !searchTerm.isEmpty()) {
+                    String textContent = textArea.getText();
+                    int index = 0;
+
+                    while ((index = textContent.indexOf(searchTerm, index)) >= 0) {
+                        try {
+                            int end = index + searchTerm.length();
+                            textArea.getHighlighter().addHighlight(index, end, highlightPainter);
+                            index = end; // Move to the end of the current match
+                        } catch (BadLocationException ex) {
+                            ex.printStackTrace();
+                        }
+                    }
+                }
+            }
+
+            private void removeHighlights(JTextComponent textComp) {
+                Highlighter hilite = textComp.getHighlighter();
+                Highlighter.Highlight[] hilites = hilite.getHighlights();
+
+                for (int i = 0; i < hilites.length; i++) {
+                    if (hilites[i].getPainter() instanceof DefaultHighlighter.DefaultHighlightPainter) {
+                        hilite.removeHighlight(hilites[i]);
+                    }
+                }
+            }
+        });
+        editMenu.add(findMenuItem);
+        
+        JMenuItem selectAllMenuItem = new JMenuItem("Select All");
+        
 
         return editMenu;
     }
