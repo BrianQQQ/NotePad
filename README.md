@@ -40,15 +40,12 @@
 <!--Screenshots (GIFs/PNGs)-->
 <h2>Screenshots</h2>
 
-![Main Interface](![{E5A94A1E-5249-4ACF-8AEB-A8AF923FC774}](https://github.com/user-attachments/assets/538fd77d-dffc-4287-9e76-181ba9149b40)
-)
+![{E5A94A1E-5249-4ACF-8AEB-A8AF923FC774}](https://github.com/user-attachments/assets/538fd77d-dffc-4287-9e76-181ba9149b40)
 
-![Find All](![{079FA661-C6B5-4C93-BC99-689732A9882C}](https://github.com/user-attachments/assets/41476e46-565d-438a-8997-9a12876ca328)
-)
+![{079FA661-C6B5-4C93-BC99-689732A9882C}](https://github.com/user-attachments/assets/41476e46-565d-438a-8997-9a12876ca328)
 
-![Print](![{56835DC2-91B8-4EBC-8BE0-3A372939953C}](https://github.com/user-attachments/assets/02375eaf-6458-4fb3-8675-9291dde34b53)
-)
-![{56835DC2-91B8-4EBC-8BE0-3A372939953C}](https://github.com/user-attachments/assets/99ac74b5-0402-403c-990a-e8fc8f7d2330)
+![{56835DC2-91B8-4EBC-8BE0-3A372939953C}](https://github.com/user-attachments/assets/02375eaf-6458-4fb3-8675-9291dde34b53)
+
 
 <h2>Acknowledgements</h2>
 
