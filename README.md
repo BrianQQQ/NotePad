@@ -40,11 +40,14 @@
 <!--Screenshots (GIFs/PNGs)-->
 <h2>Screenshots</h2>
 
-![Main Interface](images/main_interface.png)
+![Main Interface](![{E5A94A1E-5249-4ACF-8AEB-A8AF923FC774}](https://github.com/user-attachments/assets/538fd77d-dffc-4287-9e76-181ba9149b40)
+)
 
-![Text Formatting](images/text_formatting.png)
+![Find All](![{079FA661-C6B5-4C93-BC99-689732A9882C}](https://github.com/user-attachments/assets/41476e46-565d-438a-8997-9a12876ca328)
+)
 
-![File Operations](images/file_operations.png)
+![Print](![{56835DC2-91B8-4EBC-8BE0-3A372939953C}](https://github.com/user-attachments/assets/02375eaf-6458-4fb3-8675-9291dde34b53)
+)
 
 <h2>Acknowledgements</h2>
 
